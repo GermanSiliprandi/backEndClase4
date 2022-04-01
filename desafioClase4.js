@@ -5,7 +5,7 @@ async function saveFile(object) {
 	try {
 		const file = await fs.promises.readFile(fileName, "utf-8");
 		const fileParse = JSON.parse(file);
-		object.id = fileParse.length + 1;
+		object.id = fileParse[fileParse.length - 1].id + 1;
 		fileParse.push(object);
 		const fileString = JSON.stringify(fileParse, null, 2);
 		writeFile(fileString, "Object Added");
