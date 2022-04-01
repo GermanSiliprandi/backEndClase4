@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Monitor Samsung",
+    "price": 150,
+    "thumbnail": "https://monitor",
+    "id": 1
+  },
+  {
+    "title": "Monitor Samsung",
+    "price": 150,
+    "thumbnail": "https://monitor",
+    "id": 2
+  },
+  {
+    "title": "Monitor Samsung",
+    "price": 150,
+    "thumbnail": "https://monitor",
+    "id": 3
+  }
+]
