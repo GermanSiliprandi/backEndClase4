@@ -100,9 +100,10 @@ async function deleteId(id) {
 		const file = await fs.promises.readFile(fileName, "utf-8");
 		const fileParse = JSON.parse(file);
 		if (fileParse.length >= id) {
-			fileParse.splice(id, 1);
+			fileParse.splice(id - 1, 1);
 			console.log(fileParse);
-			writeFile(fileParse, `The product with the ID ${id} was deleted`);
+			const fileString = JSON.stringify(fileParse, null, 2);
+			writeFile(fileString, `The product with the ID ${id} was deleted`);
 		} else {
 			console.log("There isn't any object with that ID");
 		}
@@ -137,14 +138,13 @@ class Contenedor {
 
 productos = new Contenedor();
 
-/*console.log(
-	productos.save({
-		title: "Monitor Samsung",
-		price: 150,
-		thumbnail: "https://monitor",
-	})
-);*/
-/*productos.getById(3);
-productos.getAll()*/
-/*productos.deleteById(4);*/
+/*productos.save({
+	title: "Monitor Samsung",
+	price: 150,
+	thumbnail: "https://monitor",
+});*/
+/*productos.getById(1);*/
+/*productos.getById(3);*/
+/*productos.getAll();*/
+/*productos.deleteById(2);*/
 /*productos.deleteAll();*/
