@@ -52,7 +52,6 @@ async function writeFile(list, finalMessage) {
 async function all() {
 	try {
 		const file = await fs.promises.readFile(fileName, "utf-8");
-
 		const parseFile = JSON.parse(file);
 		console.log(parseFile);
 		return parseFile;
@@ -80,17 +79,15 @@ async function getId(id) {
 	try {
 		const file = await fs.promises.readFile(fileName, "utf-8");
 		const fileParse = JSON.parse(file);
-		if (fileParse.length >= id) {
-			console.log(fileParse[id - 1]);
-			return fileParse[id - 1];
+		const result = fileParse.filter((product) => product.id == id);
+		console.log(result[0]);
+		if (result.length > 0) {
+			return result[0];
 		} else {
-			console.log("There isn't any object with that ID");
-			return null;
+			throw `There isn't any object with that ID`;
 		}
 	} catch (error) {
-		const idError = new Error(
-			`There isn't any object with that ID: ${error}`
-		);
+		const idError = new Error(`There was an Error: ${error}`);
 		console.error(idError);
 		return null;
 	}
@@ -99,10 +96,10 @@ async function deleteId(id) {
 	try {
 		const file = await fs.promises.readFile(fileName, "utf-8");
 		const fileParse = JSON.parse(file);
-		if (fileParse.length >= id) {
-			fileParse.splice(id - 1, 1);
-			console.log(fileParse);
-			const fileString = JSON.stringify(fileParse, null, 2);
+		const result = fileParse.filter((product) => product.id != id);
+		if (result.length < fileParse.length) {
+			console.log(result);
+			const fileString = JSON.stringify(result, null, 2);
 			writeFile(fileString, `The product with the ID ${id} was deleted`);
 		} else {
 			console.log("There isn't any object with that ID");
@@ -128,8 +125,9 @@ class Contenedor {
 		const result = await all();
 		return result;
 	}
-	deleteById(id) {
-		deleteId(id);
+	async deleteById(id) {
+		const result = await deleteId(id);
+		return result;
 	}
 	deleteAll() {
 		deleteAllFiles("All Objects Deleted");
@@ -144,7 +142,7 @@ productos = new Contenedor();
 	thumbnail: "https://monitor",
 });*/
 /*productos.getById(1);*/
-/*productos.getById(3);*/
+//productos.getById(3);
 /*productos.getAll();*/
-/*productos.deleteById(2);*/
+productos.deleteById(10);
 /*productos.deleteAll();*/

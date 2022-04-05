@@ -9,12 +9,12 @@
     "title": "Monitor Samsung",
     "price": 150,
     "thumbnail": "https://monitor",
-    "id": 2
+    "id": 4
   },
   {
     "title": "Monitor Samsung",
     "price": 150,
     "thumbnail": "https://monitor",
-    "id": 3
+    "id": 5
   }
 ]
